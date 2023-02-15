@@ -1,10 +1,13 @@
 import React from 'react'
+import RecipeList from '../../components/recipeList/RecipeList';
 import useFetch from '../../hooks/useFetch'
 import './home.scss'
 
 interface RecipeInfo {
   id: number;
   title: string;
+  cookingTime: string;
+  method: string;
 }
 
 const Home = () => {
@@ -16,9 +19,7 @@ const Home = () => {
       {error && <p className='error'>{error}</p>}
       {isPending && <p className="loading">Loading...</p>}
       {data &&
-        data.map((recipe) => (
-          <h2 key={recipe.id}>{recipe.title}</h2>
-        ))
+        <RecipeList recipes={data} />
       }
     </div>
   )
